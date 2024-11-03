@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,4 +26,18 @@ public class HomeController {
         logger.info("Health Check");
         return ResponseEntity.ok(CommonResponseDto.success());
     }
+
+    @PostMapping("/fail")
+    public ResponseEntity<CommonResponseDto<Void>> fail() {
+        logger.info("fail");
+        return ResponseEntity.ok(CommonResponseDto.fail("fail"));
+    }
+
+    @GetMapping("exception")
+    public ResponseEntity<CommonResponseDto<Void>> exception() {
+        logger.info("exception");
+        throw new IllegalStateException("exception");
+    }
+
+
 }
