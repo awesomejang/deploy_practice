@@ -1,0 +1,39 @@
+<configuration>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <!-- 로그 패턴 설정 -->
+            <!-- %X{requestId}는 MDC에 저장된 requestId 값을 의미함 -->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] [%X{requestId}] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 로그 파일 경로와 이름 설정 -->
+        <file>/path/to/your/logs/application.log</file>
+
+        <!-- 일별 로그 파일 생성 설정 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 파일 이름 패턴, 날짜 형식을 포함 -->
+            <fileNamePattern>/path/to/your/logs/application-%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+            <!-- 보관 기간 설정 (필요에 따라 조정) -->
+            <maxHistory>30</maxHistory>
+            <!-- 압축 설정 -->
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 루트 로거 설정 -->
+    <root level="info">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE" />
+    </root>
+
+</configuration>
