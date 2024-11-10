@@ -1,5 +1,4 @@
 <configuration>
-
     <property name="LOG_PATH" value="/opt/deploy-test-app/logs"/>
     <property name="LOG_FILE_NAME" value="application"/>
     <property name ="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss} [%thread] [%X{requestId}] %-5level %logger{36} - %msg%n"/>
@@ -36,5 +35,4 @@
         <appender-ref ref="CONSOLE" />
         <appender-ref ref="FILE" />
     </root>
-
 </configuration>
