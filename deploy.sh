@@ -43,10 +43,11 @@ echo "Link symbol with $TARGET_JAR_FILE..."
 ln -sf "$TARGET_JAR_FILE" "$SYMBOLIC_LINK"
 
 # 4. Kill existing process on port 8080
-echo "Finding process using port $PORT..."
-PID=$(lsof -ti tcp:$PORT)
-if [ -n "$PID" ]; then
-    echo "Killing process $PID using port $PORT..."
+if [ -z "$PID" ]; then
+    echo "No process using port $PORT found."
+else
+    echo "Process $PID is using port $PORT."
+    echo "Killing process $PID..."
     kill -9 "$PID"
 
     for i in {1..10}; do
@@ -58,14 +59,6 @@ if [ -n "$PID" ]; then
         break
       fi
     done
-
-    if ps -p "$PID" > /dev/null; then
-      echo "Process $PID did not terminate gracefully. Forcing termination..."
-      kill -9 "$PID"
-      sleep 2
-    fi
-else
-    echo "No process using port $PORT found."
 fi
 
 # 6. 애플리케이션 실행
