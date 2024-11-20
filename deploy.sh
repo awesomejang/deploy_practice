@@ -66,5 +66,5 @@ echo "Starting new application on port $PORT..."
 echo "symbolic link : $SYMBOLIC_LINK"
 nohup java -jar -Dserver.port=$PORT "$SYMBOLIC_LINK" --spring.profiles.active=prod > app.log &
 #nohup java -jar -Dserver.port=$PORT "$SYMBOLIC_LINK" --spring.profiles.active=prod > app.log 2>&1 &
-
 echo "Deployment complete!"
+tail -1000f app.log
