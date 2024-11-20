@@ -27,6 +27,7 @@ echo "Stopping any existing Gradle daemons..."
 echo "Building the project..."
 ./gradlew clean bootJar # Gradle 사용 시
 
+set +e
 BUILD_JAR_FILE=$(ls ./build/libs/deploy-test-*.jar)
 echo "build jar file name : $BUILD_JAR_FILE"
 
