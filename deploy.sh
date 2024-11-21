@@ -22,8 +22,8 @@ git reset --hard origin/$BRANCH
 git clean -fd
 
 # Gradle 데몬 중지
-#echo "Stopping any existing Gradle daemons..."
-#./gradlew --stop
+echo "Stopping any existing Gradle daemons..."
+./gradlew --stop
 
 # 3. Build
 echo "Building the project..."
