@@ -68,7 +68,7 @@ fi
 # 6. 애플리케이션 실행
 echo "Starting new application on port $PORT..."
 echo "symbolic link : $SYMBOLIC_LINK"
-nohup java -jar -Dserver.port=$PORT "$PROJECT_DIR/$TARGET_JAR_FILE" --spring.profiles.active=prod > app.log 2>&1 &
+nohup java -jar -Dserver.port=$PORT "$PROJECT_DIR/deploy-test-0.0.1.jar" --spring.profiles.active=prod > app.log 2>&1 &
 #disown
 #nohup java -jar -Dserver.port=$PORT "$SYMBOLIC_LINK" --spring.profiles.active=prod > app.log 2>&1 &
 
