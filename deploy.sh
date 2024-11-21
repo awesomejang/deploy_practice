@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 프로젝트 경로 설정
-PROJECT_DIR="/opt/servers/deploy_practice:8080"
+PROJECT_DIR="/opt/servers/deploy_practice"
 SYMBOLIC_LINK_NAME="current.jar"
 BRANCH="main"
 PORT=8080
