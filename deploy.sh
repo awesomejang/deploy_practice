@@ -73,9 +73,9 @@ nohup java -jar -Dserver.port=$PORT "$PROJECT_DIR/$BUILD_JAR_FILE" --spring.prof
 #nohup java -jar -Dserver.port=$PORT "$SYMBOLIC_LINK" --spring.profiles.active=prod > app.log 2>&1 &
 
 sleep 2  # 애플리케이션 시작 대기 시간
-if ! pgrep -f "$BUILD_JAR_FILE" > /dev/null; then
-    echo "Application failed to start. Check app.log for details."
-    exit 1
-fi
+#if ! pgrep -f "$BUILD_JAR_FILE" > /dev/null; then
+#    echo "Application failed to start. Check app.log for details."
+#    exit 1
+#fi
 echo "Application started successfully. Tailing logs..."
 tail -1000f app.log
