@@ -27,7 +27,7 @@ git clean -fd
 
 # 3. Build
 echo "Building the project..."
-./gradlew --no-daemon clean bootJar
+./gradlew clean bootJar
 
 set +e
 
