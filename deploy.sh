@@ -68,14 +68,12 @@ fi
 # 6. 애플리케이션 실행
 echo "Starting new application on port $PORT..."
 echo "symbolic link : $SYMBOLIC_LINK"
+ehco "deploy file location: $PROJECT_DIR/$TARGET_JAR_FILE"
 nohup java -jar -Dserver.port=$PORT "$PROJECT_DIR/$TARGET_JAR_FILE" --spring.profiles.active=prod > app.log 2>&1 &
 #disown
 #nohup java -jar -Dserver.port=$PORT "$SYMBOLIC_LINK" --spring.profiles.active=prod > app.log 2>&1 &
 
 sleep 2  # 애플리케이션 시작 대기 시간
-#if ! pgrep -f "$BUILD_JAR_FILE" > /dev/null; then
-#    echo "Application failed to start. Check app.log for details."
-#    exit 1
-#fi
+
 echo "Application started successfully. Tailing logs..."
 tail -1000f app.log
