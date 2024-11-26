@@ -68,7 +68,8 @@ fi
 # 6. 애플리케이션 실행
 echo "Starting new application on port $PORT..."
 echo "symbolic link : $SYMBOLIC_LINK"
-echo "deploy file location: $PROJECT_DIR/$TARGET_JAR_FILE"
+cd "$PROJECT_DIR" || { echo "Project directory not found! Exiting."; exit 1; }
+
 nohup java -jar -Dserver.port=$PORT "$PROJECT_DIR/$TARGET_JAR_FILE" --spring.profiles.active=prod > app.log 2>&1 &
 #disown
 #nohup java -jar -Dserver.port=$PORT "$SYMBOLIC_LINK" --spring.profiles.active=prod > app.log 2>&1 &
