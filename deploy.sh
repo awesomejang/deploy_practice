@@ -15,9 +15,7 @@ set -e
 
 # 2. Git Pull
 echo "Pulling latest changes from $BRANCH..."
-git fetch origin
-
-git reset --hard origin/$BRANCH
+git pull origin $BRANCH --rebase
 
 git clean -fd
 
