@@ -9,10 +9,6 @@ PORT=8080
 # 하나라도 실패하면 정지
 set -e
 
-# 1. 프로젝트 디렉토리로 이동
-#echo "Navigating to project directory: $PROJECT_DIR"
-#cd $PROJECT_DIR || { echo "Project directory not found! Exiting."; exit 1; }
-
 # 2. Git Pull
 echo "Pulling latest changes from $BRANCH..."
 git pull origin $BRANCH --rebase
@@ -67,7 +63,7 @@ fi
 echo "Starting new application on port $PORT..."
 echo "symbolic link : $SYMBOLIC_LINK"
 cd "$PROJECT_DIR" || { echo "Project directory not found! Exiting."; exit 1; }
-
+# 2 >&1 예외, 정상 로그 출력 한곳에서 처리
 nohup java -jar -Dserver.port=$PORT "$PROJECT_DIR/$TARGET_JAR_FILE" --spring.profiles.active=prod > app.log 2>&1 &
 #disown
 #nohup java -jar -Dserver.port=$PORT "$SYMBOLIC_LINK" --spring.profiles.active=prod > app.log 2>&1 &
