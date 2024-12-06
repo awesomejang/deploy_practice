@@ -5,7 +5,7 @@ FROM eclipse-temurin:21-jdk-alpine
 WORKDIR /app
 
 # 3. Gradle 빌드된 JAR 파일 복사
-ARG JAR_FILE=build/libs/deploy-test-0.0.1-SNAPSHOT.jar
+ARG JAR_FILE=build/libs/deploy-test-0.0.1.jar
 COPY ${JAR_FILE} app.jar
 
 # 4. 프로필 환경변수 설정 (예: prod)
