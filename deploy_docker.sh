@@ -26,9 +26,9 @@ docker build -t spring-app:latest .
 # 4. 기존 컨테이너 중지 및 제거
 if [ "$(docker ps -q -f name=spring-app-container)" ]; then
     echo "Stopping existing container..."
-    docker stop spring-app-container
+    docker stop spring-app-container || true
     echo "Removing existing container..."
-    docker rm spring-app-container
+    docker rm spring-app-container || true
 else
     echo "No existing container with name 'spring-app-container' found."
 fi
