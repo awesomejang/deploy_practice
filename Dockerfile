@@ -5,6 +5,7 @@ FROM eclipse-temurin:21-jdk-alpine
 WORKDIR /app
 
 # 3. Gradle 빌드된 JAR 파일 복사
+# ARG = Docker 이미지 빌드 시에만 유효한 빌드 타임 변수 선언
 ARG JAR_FILE=build/libs/deploy-test-0.0.1.jar
 COPY ${JAR_FILE} app.jar
 
