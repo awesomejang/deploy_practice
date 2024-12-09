@@ -2,6 +2,7 @@
 FROM eclipse-temurin:21-jdk-alpine
 
 # 2. 작업 디렉토리 설정
+# 이후 모든 명령은 기본적으로 /app 디렉토리 기준으로 실행
 WORKDIR /app
 
 # 3. Gradle 빌드된 JAR 파일 복사
