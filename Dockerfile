@@ -11,9 +11,11 @@ ARG JAR_FILE=build/libs/deploy-test-0.0.1.jar
 COPY ${JAR_FILE} app.jar
 
 # 4. 프로필 환경변수 설정 (예: prod)
+# docker 전역에서 사용가능한 환경변수 설정
 ENV SPRING_PROFILES_ACTIVE=prod
 
 # 5. 포트 노출
+# 단순히 명시일뿐
 EXPOSE 8080
 
 # 6. 실행 명령어
