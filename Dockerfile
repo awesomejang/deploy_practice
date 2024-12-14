@@ -19,4 +19,6 @@ ENV SPRING_PROFILES_ACTIVE=prod
 EXPOSE 8080
 
 # 6. 실행 명령어
+# 컨테이너가 시작될때 실행되는 명령어
+# 배열의 각 명령어는 공백을 기준으로 붙어서 실행된다.
 ENTRYPOINT ["java", "-jar", "-Dserver.port=8080", "app.jar"]

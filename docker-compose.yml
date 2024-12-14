@@ -1,13 +1,13 @@
-version: "3.8"
-services:
-  spring-app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
+version: "3.8" # docker-compose file version 도커 버전에 맞게 설정 필요
+services: # 컨테이너로 실행할 각 서비스를 정의
+  spring-app: # 서비스 명
+    build: # 도커 이미지를 생성할때 사용하는 설정
+      context: .  # Docker 이미지 빌드할때 참조할 디렉토리 설정 (여기에 Dockerfile 및 AP 코드가 있어야 함)
+      dockerfile: Dockerfile  # 이미지를 빌드할 때 사용할 Dockerfile의 이름을 명시
+    ports: # 호스트(외부)와 컨테이너(내부) 간의 포트를 매핑 / 호스트 포트:컨테이너포트 형식으로 작성
       - "8080:8080"
-    environment:
+    environment: # 컨테이너 실행 시 전달할 환경 변수 설정
       SPRING_PROFILES_ACTIVE: dev
-    volumes:
-      - ./logs:/app/logs
-    restart: always
+    volumes: # 호소트 시스템과 컨테이너 간에 파일을 공유할 때 사용 / 파일 또는 디렉토리를 컨테이너 내부에 마운트하여 동기화
+      - ./logs:/app/logs # 호스트 디렉토리 ./logs를 컨테이너의 /app/logs 디렉토리에 마운트 애플리케이션 로그가 컨테이너 내 /app/logs에 기록되면, 호스트의 ./logs에서 동일한 로그 파일을 확인할 수 있다.
+    restart: always # 컨테이너가 종료, 실행 실패 했을때 다시 시작하는 정책 always = 항상 재시작
