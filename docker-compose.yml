@@ -1,6 +1,6 @@
 version: "3.8" # docker-compose file version 도커 버전에 맞게 설정 필요
 services: # 컨테이너로 실행할 각 서비스를 정의
-  spring-app: # 서비스 명
+  deploy-application: # 서비스 명
     build: # 도커 이미지를 생성할때 사용하는 설정
       context: .  # Docker 이미지 빌드할때 참조할 디렉토리 설정 (여기에 Dockerfile 및 AP 코드가 있어야 함)
       dockerfile: Dockerfile  # 이미지를 빌드할 때 사용할 Dockerfile의 이름을 명시

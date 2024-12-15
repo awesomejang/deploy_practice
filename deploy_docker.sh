@@ -19,29 +19,19 @@ echo "Stopping any existing Gradle daemons..."
 echo "Building the project..."
 ./gradlew clean bootJar
 
-# 3. Docker 이미지 빌드
-echo "Building Docker image..."
-docker build -t spring-app:latest .
+## 3. 기존 컨테이너 중지 및 제거
+#echo "Stopping and removing existing containers..."
+#docker-compose down || true
 
-# 4. 기존 컨테이너 중지 및 제거
-if [ "$(docker ps -q -f name=spring-app-container)" ]; then
-    echo "Stopping existing container..."
-    docker stop spring-app-container || true
-    echo "Removing existing container..."
-    docker rm spring-app-container || true
-else
-    echo "No existing container with name 'spring-app-container' found."
-fi
+# 3. 기존 컨테이너 중지 및 제거
+echo "Stopping and removing existing deploy-application container..."
+docker-compose stop deploy-application || true
+docker-compose rm -f deploy-application || true
 
-# 5. 새 컨테이너 실행
-echo "Starting new container..."
-docker run -d \
-  --name spring-app-container \
-  -p $PORT:8080 \
-  -e SPRING_PROFILES_ACTIVE=prod \
-  -v $PROJECT_DIR/logs:/app/logs \
-  spring-app:latest
+# 4. 새 컨테이너 실행
+echo "Starting deploy-application container using docker-compose..."
+docker-compose up -d --build deploy-application
 
-# 6. 로그 출력
+# 5. 로그 출력
 echo "Application started successfully. Tailing logs..."
-docker logs -f spring-app-container
+docker-compose logs -f
