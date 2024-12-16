@@ -12,7 +12,7 @@ COPY ${JAR_FILE} deploy-application.jar
 
 # 4. 프로필 환경변수 설정 (예: prod)
 # docker 전역에서 사용가능한 환경변수 설정
-ENV SPRING_PROFILES_ACTIVE=prod
+ENV SPRING_PROFILES_ACTIVE=dev
 
 # 5. 포트 노출
 # 단순히 명시일뿐
@@ -21,4 +21,5 @@ EXPOSE 8080
 # 6. 실행 명령어
 # 컨테이너가 시작될때 실행되는 명령어
 # 배열의 각 명령어는 공백을 기준으로 붙어서 실행된다.
-ENTRYPOINT ["java", "-jar", "-Dserver.port=8080", "deploy-application.jar"]
+# "sh", "-c",
+ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=${SPRING_PROFILES_ACTIVE}", "-Dserver.port=8080", "deploy-application.jar"]
