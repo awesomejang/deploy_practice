@@ -30,7 +30,7 @@ docker-compose rm -f deploy-application || true
 
 # 4. 새 컨테이너 실행
 echo "Starting deploy-application container using docker-compose..."
-docker-compose up -d --build deploy-application
+docker-compose up -d --build deploy-application # docker-compose up -d(백그라운드 실행) --build(이미지 빌드)
 
 # 5. 로그 출력
 echo "Application started successfully. Tailing logs..."
