@@ -34,6 +34,7 @@ else
 fi
 
 # 5. 새 컨테이너 실행
+# docker run -d : 백그라운드 실행
 echo "Starting new container..."
 docker run -d \
   --name deploy-application-container \
